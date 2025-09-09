@@ -10,7 +10,9 @@
       "source.organizeImports": "explicit"
     },
     "files.watcherExclude": {
-      "node_modules": true
+      "_site": true,
+      ".jekyll-cache": true,
+      "vendor": true,
     },
     "[javascript][typescript][typescriptreact]": {
       "editor.defaultFormatter": "esbenp.prettier-vscode"
