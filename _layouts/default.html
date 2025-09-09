@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ page.title | default: site.title }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      .hero-bg {
+        background-color: #0d1117;
+        background-image: radial-gradient(
+            at 47% 33%,
+            hsl(202, 100%, 15%) 0,
+            transparent 59%
+          ),
+          radial-gradient(at 82% 65%, hsl(218, 89%, 18%) 0, transparent 55%);
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, #38bdf8, #a78bfa);
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .section-glow::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 80%;
+        height: 60%;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(0, 168, 232, 0.1),
+          transparent 70%
+        );
+        transform: translate(-50%, -50%);
+        filter: blur(100px);
+        z-index: -1;
+      }
+      .sticky-nav {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+      }
+      .flow-arrow {
+        position: relative;
+        color: #4b5563; /* text-gray-600 */
+      }
+      .flow-arrow.encrypted::after {
+        content: "Encrypted Stream";
+        position: absolute;
+        top: -1.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: 0.75rem;
+        color: #6ee7b7; /* text-emerald-300 */
+        white-space: nowrap;
+      }
+      @media (max-width: 768px) {
+        .flow-arrow.encrypted::after {
+          top: auto;
+          bottom: -1.5rem;
+          left: 50%;
+          transform: translateX(-50%);
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-900 text-gray-200">
+    {% include header.html %} {{ content }} {% include footer.html %}
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const mobileMenuButton = document.getElementById("mobile-menu-button");
+        const mobileMenu = document.getElementById("mobile-menu");
+
+        mobileMenuButton.addEventListener("click", () => {
+          mobileMenu.classList.toggle("hidden");
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute("href");
+            const targetElement = document.querySelector(targetId);
+
+            if (targetElement) {
+              targetElement.scrollIntoView({
+                behavior: "smooth",
+              });
+            }
+
+            if (mobileMenu && !mobileMenu.classList.contains("hidden")) {
+              mobileMenu.classList.add("hidden");
+            }
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
