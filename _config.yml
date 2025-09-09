@@ -1,13 +1,10 @@
 title: EyePoint Access
 email: info@eyepointaccess.com
-description: "EyePoint Access is a first of it's kind hardware-secured remote access solution that physically isolates your data from compromised devices."
 baseurl: ""
 domain: "eyepointaccess.com"
 url: "https://eyepointaccess.com"
 
 logo: assets/logo.png
-ga_tracking: G-17XJZYL0Z2
-ga_tracking_anonymize_ip: true
 
 exclude:
   - README.md
